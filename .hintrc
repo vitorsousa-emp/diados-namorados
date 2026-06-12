@@ -16,7 +16,8 @@
       {
         "ignore": [
           "image-rendering: -moz-crisp-edges",
-          "user-select"
+          "user-select",
+          "-webkit-overflow-scrolling"
         ]
       }
     ],
