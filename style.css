@@ -408,23 +408,15 @@ img { image-rendering: pixelated; }
 
 .tl-overlay {
   position: fixed;
-  inset: 0;
-  top: 0;                         /* garante que começa do topo real */
-  background: rgba(0,0,0,0.88);
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.92);
   display: flex;
-  align-items: flex-start;            /* ← centraliza verticalmente sempre */
+  align-items: center;
   justify-content: center;
   padding: 16px 12px;
-  z-index: 9999;                  /* ← acima de tudo */
+  z-index: 99999;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-}
-
-@media (max-height: 600px) {
-  .tl-overlay {
-    align-items: flex-start;
-    padding-top: 20px;
-  }
 }
 
 .tl-box {

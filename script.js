@@ -350,8 +350,11 @@ function openModal(it, idx) {
 
   
 
-    // trava o scroll da página enquanto o modal está aberto
+    // trava o scroll — body + html (necessário no iOS Safari)
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    document.documentElement.style.position = "fixed";
+    document.documentElement.style.width = "100%";
 
     overlay.style.display = "flex";
     return;
@@ -370,8 +373,11 @@ function openModal(it, idx) {
 function closeModal() {
   modal.classList.add("hidden");
   document.getElementById("modal-overlay").style.display = "none";
-  document.body.style.overflow = ""; // ← libera o scroll
-
+  // libera scroll — body + html (iOS)
+  document.body.style.overflow = "";
+  document.documentElement.style.overflow = "";
+  document.documentElement.style.position = "";
+  document.documentElement.style.width = "";
 }
 
 // ---------- TOAST ----------
