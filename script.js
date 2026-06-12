@@ -335,20 +335,29 @@ modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 
 function openModal(it, idx) {
-  // chamado pela timeline (tem img/icon + desc)
   if (idx !== undefined) {
+    const overlay = document.getElementById("modal-overlay");
     const mediaEl = document.getElementById("modal-media");
+
     mediaEl.innerHTML = it.img
       ? `<img class="modal-img" src="${it.img}" alt="${it.title}">`
       : `<div class="modal-img-placeholder">${it.icon || "📷"}</div>`;
+
     document.getElementById("modal-phase").textContent =
       `FASE ${String(idx + 1).padStart(2, "0")} — DESBLOQUEADA`;
     document.getElementById("modal-title").textContent = it.title;
     document.getElementById("modal-desc").textContent = it.desc || "";
-    document.getElementById("modal-overlay").style.display = "flex";
+
+    // move o overlay direto pro body, fora de qualquer section
+    document.body.appendChild(overlay);
+
+    // trava o scroll da página enquanto o modal está aberto
+    document.body.style.overflow = "hidden";
+
+    overlay.style.display = "flex";
     return;
   }
-  // chamado pelo inventário/conquistas (modal genérico)
+
   modalContent.innerHTML = `
     <div class="modal-content">
       <span class="big-emoji">${it.icon || ""}</span>
@@ -362,6 +371,8 @@ function openModal(it, idx) {
 function closeModal() {
   modal.classList.add("hidden");
   document.getElementById("modal-overlay").style.display = "none";
+  document.body.style.overflow = ""; // ← libera o scroll
+
 }
 
 // ---------- TOAST ----------
