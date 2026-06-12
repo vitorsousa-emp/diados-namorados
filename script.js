@@ -348,8 +348,7 @@ function openModal(it, idx) {
     document.getElementById("modal-title").textContent = it.title;
     document.getElementById("modal-desc").textContent = it.desc || "";
 
-    // move o overlay direto pro body, fora de qualquer section
-    document.body.appendChild(overlay);
+  
 
     // trava o scroll da página enquanto o modal está aberto
     document.body.style.overflow = "hidden";
