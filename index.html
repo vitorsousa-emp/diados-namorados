@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a0b2e" />
+  <title>❤️ Nosso Universo — Vitor & Luana</title>
+  <meta name="description" content="Uma aventura 16-bits feita só para você." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Fundo estrelado global -->
+  <div class="stars" aria-hidden="true"></div>
+  <div class="stars stars-2" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- ============== TELA 1: START ============== -->
+  <section id="screen-start" class="screen active">
+    <div class="moon" aria-hidden="true"></div>
+    <div class="hills" aria-hidden="true"></div>
+
+    <div class="start-content">
+      <h1 class="title-main">
+        <span class="heart">❤</span> NOSSO UNIVERSO <span class="heart">❤</span>
+      </h1>
+      <p class="subtitle">
+        "Entre bilhões de pessoas e infinitas possibilidades,<br />
+        a minha aventura favorita começou quando encontrei você."
+      </p>
+
+      <div class="characters-stage">
+        <img src="assets/vitor.png" alt="Vitor pixel" class="char char-vitor float" />
+        <div class="pixel-heart" aria-hidden="true">❤</div>
+        <img src="assets/luana.png" alt="Luana pixel" class="char char-luana float delay" />
+      </div>
+
+      <button id="btn-start" class="retro-btn pulse">▶ Press Start</button>
+      <p class="hint blink">— pressione ENTER ou toque para jogar —</p>
+    </div>
+  </section>
+
+  <!-- ============== TELA 2: INTRO / CARTUCHO ============== -->
+  <section id="screen-intro" class="screen">
+    <div class="crt-frame">
+      <div class="cartridge-anim">
+
+        <!-- Cartucho -->
+        <div class="cartridge">
+          <div class="cart-label">
+            <span class="cart-title">NOSSO<br />UNIVERSO</span>
+            <span class="cart-hearts">❤ ❤ ❤</span>
+          </div>
+          <div class="cart-connector"></div>
+        </div>
+
+        <!-- Console -->
+        <div class="console-body">
+
+          <!-- LED verde piscando (canto direito) -->
+          <div class="console-screen-bezel">
+            <div class="console-led blink"></div>
+          </div>
+
+          <!-- Slot + botões A e B -->
+          <div class="console-slot-area">
+            <div class="console-slot"></div>
+            <div class="console-buttons">
+              <div class="console-btn-a">A</div>
+              <div class="console-btn-b">B</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <pre id="intro-text" class="terminal"></pre>
+      <button id="btn-intro-next" class="retro-btn small hidden">▶ Continuar</button>
+    </div>
+  </section>
+
+  <!-- ============== TELA 3: MENU PRINCIPAL ============== -->
+  <section id="screen-menu" class="screen">
+    <header class="menu-header">
+      <h2 class="title-section">— Selecione uma fase —</h2>
+      <p class="muted">PLAYER 1: VITOR &nbsp; | &nbsp; PLAYER 2: LUANA</p>
+    </header>
+
+    <nav class="menu-grid">
+      <button class="menu-card" data-go="screen-timeline">
+        <span class="emoji">🗺️</span>
+        <span class="label">Nossa Linha do Tempo</span>
+      </button>
+      <button class="menu-card" data-go="screen-stats">
+        <span class="emoji">📊</span>
+        <span class="label">Estatísticas do Casal</span>
+      </button>
+      <button class="menu-card" data-go="screen-inventory">
+        <span class="emoji">🎒</span>
+        <span class="label">Nosso inventario</span>
+      </button>
+      <button class="menu-card" data-go="screen-achievements">
+        <span class="emoji">🏆</span>
+        <span class="label">Conquistas</span>
+      </button>
+      <button class="menu-card" data-go="screen-minigame">
+        <span class="emoji">🎮</span>
+        <span class="label">Minigames</span>
+      </button>
+      <button class="menu-card glow" data-go="screen-letter">
+        <span class="emoji">💌</span>
+        <span class="label">Carta Final</span>
+      </button>
+    </nav>
+
+    <div class="save-bar">
+      <span id="save-progress">SAVE: <b>0%</b></span>
+      <button id="btn-reset" class="link-btn">↺ resetar progresso</button>
+    </div>
+  </section>
+
+  <!-- ============== TELA: LINHA DO TEMPO ============== -->
+  <section id="screen-timeline" class="screen">
+    <button class="back-btn" data-back>◀ Voltar</button>
+    <h2 class="title-section">— Nossa Linha do Tempo —</h2>
+    <div id="timeline" class="timeline"></div>
+
+    <div id="modal-overlay" class="tl-overlay" style="display:none;">
+      <div class="tl-box">
+        <div id="modal-media"></div>
+        <div class="tl-body">
+          <div id="modal-phase" class="tl-phase"></div>
+          <div id="modal-title" class="tl-title"></div>
+          <div id="modal-desc" class="tl-desc"></div>
+          <button class="tl-close-btn" id="btn-tl-close">✕ Voltar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TELA: STATS ============== -->
+  <section id="screen-stats" class="screen">
+    <button class="back-btn" data-back>◀ Voltar</button>
+    <h2 class="title-section">— Status do Casal —</h2>
+    <div class="stats-panel" id="stats-panel"></div>
+  </section>
+
+  <!-- ============== TELA: INVENTÁRIO ============== -->
+  <section id="screen-inventory" class="screen">
+    <button class="back-btn" data-back>◀ Voltar</button>
+    <h2 class="title-section">— Inventário do Amor —</h2>
+    <div id="inventory" class="inventory"></div>
+  </section>
+
+  <!-- ============== TELA: CONQUISTAS ============== -->
+  <section id="screen-achievements" class="screen">
+    <button class="back-btn" data-back>◀ Voltar</button>
+    <h2 class="title-section">— Conquistas —</h2>
+    <div id="achievements" class="achievements"></div>
+  </section>
+
+  <!-- ============== TELA: MINIGAME ============== -->
+  <!-- TELA: SELEÇÃO DE MINIGAMES -->
+  <section id="screen-minigame" class="screen">
+    <button class="back-btn" data-back>◀ Voltar</button>
+    <h2 class="title-section">— Minigames —</h2>
+    <div id="minigame-select" class="minigame-select"></div>
+  </section>
+
+  <!-- TELA: CAÇA CORAÇÕES -->
+  <section id="screen-catch-hearts" class="screen">
+    <button class="back-btn" data-go-minigame>◀ Voltar</button>
+    <h2 class="title-section">— Caça os Corações —</h2>
+    <p class="muted center">Toque/clique nos corações antes que desapareçam. Colete <b>10</b> para vencer!</p>
+    <div class="game-hud">
+      <span>❤ Corações: <b id="hg-score">0</b>/10</span>
+      <span>⏱ Tempo: <b id="hg-time">30</b>s</span>
+    </div>
+    <div id="game-area" class="game-area">
+      <button id="btn-game-start" class="retro-btn">▶ Iniciar</button>
+    </div>
+  </section>
+
+  <!-- TELA: SEU NOVO JOGO (crie uma section igual essa com o id correto) -->
+  <section id="screen-seu-novo-jogo" class="screen">
+    <button class="back-btn" data-go-minigame>◀ Voltar</button>
+    <h2 class="title-section">— Nome do Jogo —</h2>
+    <!-- seu jogo aqui -->
+  </section>
+
+  <!-- ============== TELA: CARTA FINAL ============== -->
+  <section id="screen-letter" class="screen">
+    <button class="back-btn" data-back>◀ Voltar</button>
+    <div class="night-scene">
+      <div class="moon big"></div>
+      <div class="couple-sit">
+        <img src="assets/vitor.png" alt="" class="char small" />
+        <img src="assets/luana.png" alt="" class="char small" />
+      </div>
+    </div>
+    <div class="letter-card">
+      <pre id="letter-text" class="letter"></pre>
+      <button id="btn-final" class="retro-btn hidden">▶ Salvar Aventura</button>
+    </div>
+  </section>
+
+  <!-- ============== TELA: SAVE COMPLETED ============== -->
+  <section id="screen-saved" class="screen">
+    <div class="save-screen">
+      <h2 class="title-main pulse">SAVE COMPLETED</h2>
+      <div class="save-info">
+        <p><b>MISSÃO PRINCIPAL:</b><br />Construir uma vida inteira juntos.</p>
+        <p><b>STATUS:</b> <span class="blink">Em andamento...</span></p>
+        <p class="hint">Pressione START para continuar nossa aventura.</p>
+      </div>
+      <button id="btn-restart" class="retro-btn">▶ Start</button>
+    </div>
+  </section>
+
+  <!-- ============== MODAL GENÉRICO ============== -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button id="modal-close" class="modal-close" aria-label="Fechar">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Toast de conquista -->
+  <div id="toast" class="toast hidden">
+    <span class="toast-icon">🏆</span>
+    <div>
+      <div class="toast-title">Conquista desbloqueada!</div>
+      <div class="toast-text" id="toast-text"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
